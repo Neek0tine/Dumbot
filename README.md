@@ -1,7 +1,7 @@
 ![Discord](https://img.shields.io/discord/257479001365413889?label=Discord&style=flat-square) This is where I live.
 # Dumbot Discord bot
 
-<img src="https://github.com/Neek0tine/Dumbot/blob/main/va.png" width="400" height="400">
+<img src="https://github.com/Neek0tine/Dumbot/blob/master/va.png" width="400" height="400">
 
 
 Dumbot is an experimental entertainment bot made to gather website content (web scraping) using a unique technique of "Link randomization" in which, following the correct link pattern, the content numer/ID/identifier is randomized for entertainment purposes. More features will be implemented somewhen in the future.
