@@ -1,9 +1,14 @@
 # Dumbot; Discord.py [rewrite] 1.3.4
+from configparser import ConfigParser
+config = ConfigParser()
+config.read('config.ini')
+
 from discord.ext import commands
 import os
 
-BOT_TOKEN = 'NzIyMTA5MDcyMjk1NTkxOTY4.XueSeg.PDh_CPeRCRKS9fKSYO8xlw8vTI4'
-BOT_INVITE = 'https://discord.com/api/oauth2/authorize?client_id=722109072295591968&permissions=1543761142&scope=bot'
+data = config['BOT_CFG']
+BOT_TOKEN = data['TOKEN']
+BOT_INVITE = data['INVITE']
 
 
 def get_prefix(bot, message):
