@@ -4,7 +4,6 @@ import asyncio
 from responses import cumzone
 import discord
 from discord.ext import commands
-from profane import profane
 
 
 class MainCog(commands.Cog):
@@ -42,9 +41,7 @@ class MainCog(commands.Cog):
     async def on_message(self, message):
         msg = message.content
         msg = msg.casefold()
-        timer = random.randint(0, 120)
-        boo = random.choice(profane) + " " + random.choice(profane)
-        boo = str(boo)
+        timer = random.randint(0, 6)
         try:
             print(message.author.name, "#", message.channel.name, " : ", msg, )  # Log all chat to stdout
 
@@ -55,23 +52,16 @@ class MainCog(commands.Cog):
                     await message.channel.send("fucking еpic")
 
             elif 'cum' in msg:
-                config = configparser.ConfigParser()
-                config.read('config.ini')
-                data = config['BOT_CFG']
-                if data['anti_cum'] == 'False':
-                    print(f'[+] Cum message detected! msg : <{msg}>, timer : <{timer}s>')
-                    await asyncio.sleep(timer)
-                    async with message.channel.typing():
-                        await message.channel.send(random.choice(cumzone))
-                else:
-                    print(f'[+] Found cum message, deleting. (Anticum is {data["anti_cum"]})')
-                    await message.delete()
-
+              print(f'[+] Cum message detected! msg : <{msg}>, timer : <{timer}s>')
+              await asyncio.sleep(timer)
+              async with message.channel.typing():
+                await message.channel.send(random.choice(cumzone))
+                      
             elif 'æughē' in msg and message.author.name != 'Dumbot':
-                print(f'[+] [what] message detected! msg : <{msg}>, timer : <{timer}s> ')
-                await asyncio.sleep(timer)
-                async with message.channel.typing():
-                    await message.channel.send("Æughē")
+              print(f'[+] [what] message detected! msg : <{msg}>, timer : <{timer}s> ')
+              await asyncio.sleep(timer)
+              async with message.channel.typing():
+                await message.channel.send("Æughē")
 
             elif 'uganda' in msg and message.author.name != 'Dumbot':
                 choice = random.choice(['black goes brrr', 'inflation', 'cummotion', 'haha lmao yeet'])
