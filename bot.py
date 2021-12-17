@@ -1,14 +1,32 @@
-# Dumbot; Discord.py [rewrite] 1.3.4
-from configparser import ConfigParser
-config = ConfigParser()
-config.read('config.ini')
-
+# Dumbot; Discord.py [rewrite] 1.7.3
 from discord.ext import commands
+from threading import Thread
+import psutil
+from discord.ext import commands
+from flask import Flask
 import os
 
-data = config['BOT_CFG']
-BOT_TOKEN = data['TOKEN']
-BOT_INVITE = data['INVITE']
+BOT_TOKEN = os.getenv("dumbot_token")
+app = Flask('')
+
+
+@app.route('/')
+def main():
+    stats = f"TSDBot; Discord.py [rewrite] 1.7.3 -- Status : Up -- Ram Usage: {psutil.virtual_memory().percent} % -- " \
+            f"Available Memory: {round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total)} %"
+    return stats
+
+
+def run():
+    app.run(host="0.0.0.0", port=8000)
+
+
+def keep_alive():
+    server = Thread(target=run)
+    server.start()
+
+
+keep_alive()
 
 
 def get_prefix(bot, message):
