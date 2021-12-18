@@ -142,7 +142,7 @@ class NukegenCog(commands.Cog):
         await ctx.trigger_typing()
         await asyncio.sleep(1)
 
-        _random = get_doujin(get_random_id())
+        _random = get_doujin(random.randint(0, 400000))
         _img = _random.cover
 
         print(f'[+] Nuke command launched! Gathered ID: {_random.id}')
