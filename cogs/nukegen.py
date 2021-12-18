@@ -141,6 +141,7 @@ class NukegenCog(commands.Cog):
     @commands.command()
     async def nuke(self, ctx):
         await ctx.trigger_typing()
+<<<<<<< HEAD
       
         _random = ''
         _img = ''
@@ -152,6 +153,13 @@ class NukegenCog(commands.Cog):
           await ctx.channel.send(e)
           await ctx.channel.send("Lmao forward this to that fucking nerd.")
           
+=======
+        await asyncio.sleep(1)
+
+        _random = get_doujin(random.randint(0, 400000))
+        _img = _random.cover
+
+>>>>>>> origin/master
         print(f'[+] Nuke command launched! Gathered ID: {_random.id}')
 
         info = dict()
