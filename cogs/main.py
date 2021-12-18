@@ -1,8 +1,10 @@
+import math
 import random
 import configparser
 import asyncio
 from responses import cumzone
 import discord
+from boo import boo
 from discord.ext import commands
 
 
@@ -42,6 +44,7 @@ class MainCog(commands.Cog):
         msg = message.content
         msg = msg.casefold()
         timer = random.randint(0, 6)
+
         try:
             print(message.author.name, "#", message.channel.name, " : ", msg, )  # Log all chat to stdout
 
@@ -71,31 +74,31 @@ class MainCog(commands.Cog):
                     await message.channel.send(choice)
 
             elif 'fuck' in msg and message.author.name != 'Dumbot':
-                choice = boo
+                choice = random.choice(boo)
                 print(f'[+] fuck yeah message detected! msg : <{msg}>, timer : <{timer}s>, response : <{choice}> ')
                 await asyncio.sleep(timer)
                 async with message.channel.typing():
                     await message.channel.send(choice)
             elif 'cunt' in msg:
-                choice = boo
+                choice = random.choice(boo)
                 print(f'[+] fuck yeah message detected! msg : <{msg}>, timer : <{timer}s>, response : <{choice}> ')
                 await asyncio.sleep(timer)
                 async with message.channel.typing():
                     await message.channel.send(choice)
             elif 'bitch' in msg:
-                choice = boo
+                choice = random.choice(boo)
                 print(f'[+] fuck yeah message detected! msg : msg : <{msg}>, timer : <{timer}s>, response : <{choice}> ')
                 await asyncio.sleep(timer)
                 async with message.channel.typing():
                     await message.channel.send(choice)
             elif 'idiot' in msg:
-                choice = boo
+                choice = random.choice(boo)
                 print(f'[+] fuck yeah message detected! msg : msg : <{msg}>, timer : <{timer}s>, response : <{choice}> ')
                 await asyncio.sleep(timer)
                 async with message.channel.typing():
                     await message.channel.send(choice)
             elif 'dumbass' in msg:
-                choice = boo
+                choice = random.choice(boo)
                 print(f'[+] fuck yeah message detected! msg : msg : <{msg}>, timer : <{timer}s>, response : <{choice}> ')
                 await asyncio.sleep(timer)
                 async with message.channel.typing():
@@ -111,6 +114,39 @@ class MainCog(commands.Cog):
                             f'{random.choice(shutdowns)}  {message.author.mention}')
                     else:
                         await message.channel.send(random.choice(shutdowns))
+
+            elif 'gu' or 'bu' or 'ga' in msg:
+                if (message.author.bot) :
+                    return
+                else:
+                    drop = int(math.floor(int(len(message.content))/2))
+                    chance = []
+
+                    for _ in range(drop):
+                        roll = random.randint(1, 50)
+                        chance.append(roll)
+
+                    chance = min(chance)
+
+                    if chance < 7:
+
+                        def bogayongen():
+                            _first_set = ['b', 'g']
+                            _second_set = ['a', 'o', 'i', 'u']
+
+                            _bogayon = []
+
+                            while len(_bogayon) < random.randint(2, 6):
+                                _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
+                                _bogayon.append(_complete_set)
+                            _bogayon = str("".join(_bogayon)).capitalize()
+                            print(f'[+] Bagogo mesage detected, generating {_bogayon}')
+                            return _bogayon
+
+                        await message.channel.send(bogayongen())
+
+                    else:
+                        return
 
         except AttributeError:
             print("Direct Message received!")

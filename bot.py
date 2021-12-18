@@ -30,7 +30,7 @@ keep_alive()
 
 
 def get_prefix(bot, message):
-    prefixes = ['d ', 'dumbot ']
+    prefixes = ['d ', 'dumbot ', 'D']
     if not message.guild:
         return 'd '
     return commands.when_mentioned_or(*prefixes)(bot, message)

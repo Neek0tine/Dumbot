@@ -73,6 +73,7 @@ _SESSION = requests.Session()
 proxies = {'http': 'http://118.127.99.93:53281'}
 _SESSION.proxies.update(proxies)
 
+
 def _get(endpoint, params={}) -> dict:
     return _SESSION.get(urljoin("https://nhentai.net/api/", endpoint), params=params, proxies=proxies).json()
 
@@ -134,6 +135,7 @@ def get_random_id() -> int:
     redirect = _SESSION.head("https://nhentai.net/random/").headers["Location"]
     return int(redirect[3:-1])
 
+
 class NukegenCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -141,25 +143,26 @@ class NukegenCog(commands.Cog):
     @commands.command()
     async def nuke(self, ctx):
         await ctx.trigger_typing()
-<<<<<<< HEAD
-      
+
         _random = ''
         _img = ''
-      
+
         try:
-          _random = get_doujin(random.randint(0, 400000))
-          _img = _random.cover
+            _random = get_doujin(random.randint(0, 400000))
+            _img = _random.cover
         except Exception as e:
-          await ctx.channel.send(e)
-          await ctx.channel.send("Lmao forward this to that fucking nerd.")
-          
-=======
+            await ctx.channel.send(e)
+            await asyncio.sleep(1)
+            await ctx.channel.send("Lmao forward this to that fucking nerd.")
+            await asyncio.sleep(2)
+            await ctx.channel.send("Meanwhile, enjoy this")
+            await ctx.channel.send(f"https://nhentai.net/g/{random.randint(0, 4000)}")
+
         await asyncio.sleep(1)
 
         _random = get_doujin(random.randint(0, 400000))
         _img = _random.cover
 
->>>>>>> origin/master
         print(f'[+] Nuke command launched! Gathered ID: {_random.id}')
 
         info = dict()
@@ -220,7 +223,6 @@ class NukegenCog(commands.Cog):
             _tag = ", ".join(_tag)
         except Exception:
             _tag = 'None'
-
 
         _nhen = Embed(title=_random.titles['english'], description='Here you go, you degenerate', color=0x87CEEB)
         _nhen.set_thumbnail(url=_img)

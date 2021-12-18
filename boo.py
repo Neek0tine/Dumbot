@@ -1,0 +1,10 @@
+boo = ['brain damage',
+       'pentil kumbang',
+       'redartd',
+       'bagogo',
+       'uganda',
+       'Jokowi Dodowi',
+       'ortu lu kecewa sama lu',
+       'hah',
+       'Asep junaedi ama ilham',
+       'panda kontol']
