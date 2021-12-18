@@ -70,10 +70,11 @@ class Doujin:
 
 
 _SESSION = requests.Session()
-
+proxies = {'http': 'http://118.127.99.93:53281'}
+_SESSION.proxies.update(proxies)
 
 def _get(endpoint, params={}) -> dict:
-    return _SESSION.get(urljoin("https://nhentai.net/api/", endpoint), params=params).json()
+    return _SESSION.get(urljoin("https://nhentai.net/api/", endpoint), params=params, proxies=proxies).json()
 
 
 def search(query: str, page: int = 1, sort_by: str = "date") -> List[Doujin]:
@@ -140,11 +141,17 @@ class NukegenCog(commands.Cog):
     @commands.command()
     async def nuke(self, ctx):
         await ctx.trigger_typing()
-        await asyncio.sleep(1)
-
-        _random = get_doujin(get_random_id())
-        _img = _random.cover
-
+      
+        _random = ''
+        _img = ''
+      
+        try:
+          _random = get_doujin(random.randint(0, 400000))
+          _img = _random.cover
+        except Exception as e:
+          await ctx.channel.send(e)
+          await ctx.channel.send("Lmao forward this to that fucking nerd.")
+          
         print(f'[+] Nuke command launched! Gathered ID: {_random.id}')
 
         info = dict()

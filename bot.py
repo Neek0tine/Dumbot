@@ -6,7 +6,7 @@ from discord.ext import commands
 from flask import Flask
 import os
 
-BOT_TOKEN = os.getenv("enju_token")
+BOT_TOKEN = os.getenv("dumbot_token")
 app = Flask('')
 
 
