@@ -7,4 +7,5 @@ boo = ['brain damage',
        'ortu lu kecewa sama lu',
        'hah',
        'Asep junaedi ama ilham',
-       'panda kontol']
+       'panda kontol',
+       'air asia, more like water asia']
