@@ -5,7 +5,7 @@ import psutil
 from discord.ext import commands
 from flask import Flask
 import os
-
+print("Getting token ...")
 BOT_TOKEN = os.environ["dumbot_token"]
 print('Bot token get!')
 
