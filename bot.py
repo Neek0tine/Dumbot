@@ -7,6 +7,8 @@ from flask import Flask
 import os
 
 BOT_TOKEN = os.environ["dumbot_token"]
+print('Bot token get!')
+
 app = Flask('')
 
 
