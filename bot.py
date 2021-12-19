@@ -1,13 +1,16 @@
 # Dumbot; Discord.py [rewrite] 1.7.3
 from discord.ext import commands
 from threading import Thread
-import psutil
-from discord.ext import commands
 from flask import Flask
+import psutil
 import os
+
+
 print("Getting token ...")
 BOT_TOKEN = os.environ["dumbot_token"]
 print('Bot token get!')
+
+
 
 app = Flask('')
 
