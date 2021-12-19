@@ -23,7 +23,8 @@ def main():
 
 
 def run():
-    app.run(host="0.0.0.0", port=8000)
+    port = int(os.environ.get('PORT', 33507)
+    app.run(host="127.0.0.1", port=port)
 
 
 def keep_alive():
