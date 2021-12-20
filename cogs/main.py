@@ -121,11 +121,8 @@ class MainCog(commands.Cog):
                         await message.channel.send(random.choice(shutdowns))
 
             elif 'ba' or 'bu' or 'gu' or 'go' or 'bo' in msg:
-                print('[+] Bogayon message detected!', msg)
                 bagogo_counter = 0
-
                 for index in range(0, len(msg)):
-
                     _set = [msg[index: index + 2]]
                     msg = "".join(_set)
                     print(set)
@@ -140,14 +137,19 @@ class MainCog(commands.Cog):
                     elif 'bo' in msg:
                         bagogo_counter += 1
 
-                print(f'[+] Bogayon trigger count: {bagogo_counter}')
-                chance = 0
+                if bagogo_counter == 0:
+                    return
+                else:
+                    print('[+] Bogayon message detected!', msg)
+                    print(f'[+] Bogayon trigger count: {bagogo_counter}')
+
+                chance = 50
+
                 try:
                     chance = min([random.randint(1, 50) for _ in range(bagogo_counter)])
+                    print(f'[+] Bogayon minimal roll: {chance}')
                 except:
-                    chance = 50
-
-                print(f'[+] Bogayon minimal roll: {chance}')
+                    return
 
                 if chance < 15:
 
