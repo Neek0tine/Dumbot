@@ -121,10 +121,11 @@ class MainCog(commands.Cog):
                         await message.channel.send(random.choice(shutdowns))
 
             if 'ba' or 'bu' or 'gu' or 'go' or 'bo' in msg:
+                message = message.content
                 print('[+] Bogayon message detected!')
                 bagogo_counter = 0
 
-                for index in range(0, len(message.content), 2):
+                for index in range(0, len(message), 2):
                     _set = [message[index: index + 2]]
                     msg = "".join(_set)
                     if 'ba' in msg:
