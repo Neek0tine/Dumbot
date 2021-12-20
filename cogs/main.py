@@ -139,37 +139,32 @@ class MainCog(commands.Cog):
                         bagogo_counter += 1
 
                 print(f'[+] Bogayon trigger count: {bagogo_counter}')
-                roll = []
-                chances = []
-
-                for _ in range(bagogo_counter):
-                    roll = random.randint(1, 50)
-                    chances.append(roll)
-
-                chance = min(chances)
-
-                print(f'[+] Bogayon minimal roll: {roll}')
+                chance = min([random.randint(1, 50) for _ in range(bagogo_counter)])
+                print(f'[+] Bogayon minimal roll: {chance}')
 
                 if chance < 15:
 
                     def bogayongen():
+
                         _first_set = ['b', 'g']
                         _second_set = ['a', 'o', 'i', 'u']
                         _bogayon = []
+
                         while len(_bogayon) < random.randint(2, 6):
                             _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
                             _bogayon.append(_complete_set)
                         _bogayon = str("".join(_bogayon)).capitalize()
                         print(f'[+] Gacha passed, generating {_bogayon}')
+
                         return _bogayon
 
                     await message.channel.send(bogayongen())
                 else:
                     return
 
-        except AttributeError:
-            print("Direct Message received!")
-            print(message.author.name, "[#] Direct Channel: ", msg)
+        except Exception as e:
+            print(e)
+            print('well well well what do we have here ')
 
 
 def setup(bot):
