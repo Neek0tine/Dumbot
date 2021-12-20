@@ -121,11 +121,11 @@ class MainCog(commands.Cog):
                         await message.channel.send(random.choice(shutdowns))
 
             elif 'ba' or 'bu' or 'gu' or 'go' or 'bo' in msg:
-                print('[+] Bogayon message detected!')
+                print('[+] Bogayon message detected!', msg)
                 bagogo_counter = 0
 
-                for index in range(0, len(message.content), 2):
-                    _set = [message[index: index + 2]]
+                for index in range(0, len(msg), 2):
+                    _set = [msg[index: index + 2]]
                     msg = "".join(_set)
                     if 'ba' in msg:
                         bagogo_counter += 1
@@ -144,21 +144,18 @@ class MainCog(commands.Cog):
 
                 if chance < 15:
 
-                    def bogayongen():
+                    _first_set = ['b', 'g']
+                    _second_set = ['a', 'o', 'i', 'u']
+                    _bogayon = []
 
-                        _first_set = ['b', 'g']
-                        _second_set = ['a', 'o', 'i', 'u']
-                        _bogayon = []
+                    while len(_bogayon) < random.randint(2, 6):
+                        _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
+                        _bogayon.append(_complete_set)
+                    _bogayon = str("".join(_bogayon)).capitalize()
+                    print(f'[+] Gacha passed, generating {_bogayon}')
 
-                        while len(_bogayon) < random.randint(2, 6):
-                            _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
-                            _bogayon.append(_complete_set)
-                        _bogayon = str("".join(_bogayon)).capitalize()
-                        print(f'[+] Gacha passed, generating {_bogayon}')
+                    await message.channel.send(_bogayon)
 
-                        return _bogayon
-
-                    await message.channel.send(bogayongen())
                 else:
                     return
 
