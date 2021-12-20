@@ -128,7 +128,7 @@ class MainCog(commands.Cog):
 
                     chance = min(chance)
 
-                    if chance < 7:
+                    if chance < 3:
 
                         def bogayongen():
                             _first_set = ['b', 'g']
