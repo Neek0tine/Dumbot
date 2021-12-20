@@ -124,9 +124,11 @@ class MainCog(commands.Cog):
                 print('[+] Bogayon message detected!', msg)
                 bagogo_counter = 0
 
-                for index in range(0, len(msg), 2):
+                for index in range(0, len(msg)):
+
                     _set = [msg[index: index + 2]]
                     msg = "".join(_set)
+                    print(set)
                     if 'ba' in msg:
                         bagogo_counter += 1
                     elif 'bu' in msg:
@@ -139,7 +141,12 @@ class MainCog(commands.Cog):
                         bagogo_counter += 1
 
                 print(f'[+] Bogayon trigger count: {bagogo_counter}')
-                chance = min([random.randint(1, 50) for _ in range(bagogo_counter)])
+                chance = 0
+                try:
+                    chance = min([random.randint(1, 50) for _ in range(bagogo_counter)])
+                except:
+                    chance = 50
+
                 print(f'[+] Bogayon minimal roll: {chance}')
 
                 if chance < 15:
