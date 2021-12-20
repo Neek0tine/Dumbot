@@ -1,12 +1,13 @@
+from collections import namedtuple
+from urllib.parse import urljoin
+from discord.ext import commands
+from enum import Enum, unique
+from discord import Embed
+from typing import List
+import requests
+import discord
 import asyncio
 import random
-from collections import namedtuple
-from enum import Enum, unique
-from typing import List
-from urllib.parse import urljoin
-import requests
-from discord.ext import commands
-from discord import Embed
 
 
 @unique
@@ -116,11 +117,7 @@ def get_homepage(page: int = 1) -> List[Doujin]:
 
 
 def get_doujin(id: int) -> Doujin:
-    """
-    Get a doujin by its id.
-    :param int id: A doujin's id.
-    :rtype: Doujin
-    """
+
     try:
         return Doujin(_get(f"gallery/{id}"))
     except KeyError:
@@ -141,6 +138,7 @@ class NukegenCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
+
     async def nuke(self, ctx):
         await ctx.trigger_typing()
 
@@ -157,11 +155,6 @@ class NukegenCog(commands.Cog):
             await asyncio.sleep(2)
             await ctx.channel.send("Meanwhile, enjoy this")
             await ctx.channel.send(f"https://nhentai.net/g/{random.randint(0, 4000)}")
-
-        await asyncio.sleep(1)
-
-        _random = get_doujin(random.randint(0, 400000))
-        _img = _random.cover
 
         print(f'[+] Nuke command launched! Gathered ID: {_random.id}')
 
@@ -190,7 +183,7 @@ class NukegenCog(commands.Cog):
             _group = 'None'
 
         try:
-            _parody = str(info['parody']).title()
+            _parody = str("".join(info['parody'])).title()
         except Exception:
             _parody = 'Original'
 
@@ -219,21 +212,16 @@ class NukegenCog(commands.Cog):
             _category = 'Hentai'
 
         try:
-            _tag = [tag.title() for tag in info['tag']]
+            _tag = [str(f'[{(tag).title()}](https://nhentai.net/tags/{str(tag).replace(" ", "-")})') for tag in info['tag']]
             _tag = ", ".join(_tag)
         except Exception:
             _tag = 'None'
 
         _nhen = Embed(title=_random.titles['english'], description='Here you go, you degenerate', color=0x87CEEB)
         _nhen.set_thumbnail(url=_img)
-        _nhen.add_field(name="Info", value=f"Parody: {_parody}\n"
-                                           f"Artist: {_artist}\n"
-                                           f"Group: {_group}\n"
-                                           f"Language: {_language}\n"
-                                           f"Characters: {_character}\n"
-                                           f"Category: {_category}")
-
-        _nhen.add_field(name=f"Sauce: {_random.id}", value=_random.url)
+        _nhen.add_field(name="Info", value=f"Parody\nArtist\nGroup\nLanguage\nCharacters\nCategory")
+        _nhen.add_field(name="** **", value=f": {_parody}\n: {_artist}\n: {_group}\n: {_language}\n: {_character}\n: {_category}", inline=True)
+        _nhen.add_field(name=f"Sauce", value=f'**[{_random.id}]({_random.url})**', inline=False)
         _nhen.add_field(name="Tags", value=_tag, inline=False)
 
         await ctx.channel.send(embed=_nhen)

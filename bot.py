@@ -24,6 +24,7 @@ def main():
 def run():
     app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 33507)))
 
+
 def keep_alive():
     server = Thread(target=run)
     server.start()
@@ -40,6 +41,7 @@ def get_prefix(bot, message):
 
 
 client = commands.Bot(command_prefix=get_prefix)
+client.remove_command('help')
 
 if __name__ == '__main__':
     for file in os.listdir("cogs"):

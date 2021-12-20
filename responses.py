@@ -45,3 +45,26 @@ cumzone = ['Welcome to the cum zone',
                    'Who ate all my cum? A mystery',
                    'Cum detective hot on the trail',
                    'Bees make honey, I make cummy']
+
+boo = ['brain damage',
+       'pentil kumbang',
+       'redartd',
+       'bagogo',
+       'uganda',
+       'Jokowi Dodowi',
+       'ortu lu kecewa sama lu',
+       'hah',
+       'Asep junaedi ama ilham',
+       'panda kontol',
+       'air asia, more like water asia']
+
+shutdowns = ['bacot',
+             'kontol',
+             'memek',
+             'brisik',
+             'what',
+             'yes',
+             'uganda',
+             'Æughē',
+             'ngapain ping mek',
+             'apaan']
