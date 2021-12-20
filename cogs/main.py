@@ -120,38 +120,50 @@ class MainCog(commands.Cog):
                     else:
                         await message.channel.send(random.choice(shutdowns))
 
-            # elif 'gu' or 'bu' or 'ga' in msg:
-            #     if message.author.bot:
-            #         return
-            #     else:
-            #         drop = int(math.floor(int(len(message.content)) / 2))
-            #         chance = []
-            #
-            #         for _ in range(drop):
-            #             roll = random.randint(1, 50)
-            #             chance.append(roll)
-            #
-            #         chance = min(chance)
-            #
-            #         if chance < 3:
-            #
-            #             def bogayongen():
-            #                 _first_set = ['b', 'g']
-            #                 _second_set = ['a', 'o', 'i', 'u']
-            #
-            #                 _bogayon = []
-            #
-            #                 while len(_bogayon) < random.randint(2, 6):
-            #                     _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
-            #                     _bogayon.append(_complete_set)
-            #                 _bogayon = str("".join(_bogayon)).capitalize()
-            #                 print(f'[+] Bagogo mesage detected, generating {_bogayon}')
-            #                 return _bogayon
-            #
-            #             await message.channel.send(bogayongen())
-            #
-            #         else:
-            #             return
+            if 'ba' or 'bu' or 'gu' or 'go' or 'bo' in msg:
+                print('[+] Bogayon message detected!')
+                bagogo_counter = 0
+
+                for index in range(0, len(message.content), 2):
+                    _set = [message[index: index + 2]]
+                    msg = "".join(_set)
+                    if 'ba' in msg:
+                        bagogo_counter += 1
+                    elif 'bu' in msg:
+                        bagogo_counter += 1
+                    elif 'gu' in msg:
+                        bagogo_counter += 1
+                    elif 'go' in msg:
+                        bagogo_counter += 1
+                    elif 'bo' in msg:
+                        bagogo_counter += 1
+
+                print(f'[+] Bogayon trigger count: {bagogo_counter}')
+                roll = []
+                chance = []
+
+                for _ in range(bagogo_counter):
+                    roll = random.randint(1, 50)
+                    chance.append(roll)
+                chance = min(chance)
+                print(f'[+] Bogayon minimal roll: {roll}')
+
+                if chance < 15:
+
+                    def bogayongen():
+                        _first_set = ['b', 'g']
+                        _second_set = ['a', 'o', 'i', 'u']
+                        _bogayon = []
+                        while len(_bogayon) < random.randint(2, 6):
+                            _complete_set = str(random.choice(_first_set) + random.choice(_second_set))
+                            _bogayon.append(_complete_set)
+                        _bogayon = str("".join(_bogayon)).capitalize()
+                        print(f'[+] Gacha passed, generating {_bogayon}')
+                        return _bogayon
+
+                    await message.channel.send(bogayongen())
+                else:
+                    return
 
         except AttributeError:
             print("Direct Message received!")
