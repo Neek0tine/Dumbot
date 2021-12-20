@@ -168,7 +168,7 @@ class MainCog(commands.Cog):
 
         except AttributeError:
             print("Direct Message received!")
-            print(message.author.name, "[#] Direct Channel: ", msg)
+            print("[#] Direct Channel: ", msg)
 
 
 def setup(bot):
