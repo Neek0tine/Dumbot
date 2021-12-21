@@ -219,8 +219,8 @@ class NukegenCog(commands.Cog):
 
         _nhen = Embed(title=_random.titles['english'], description='Here you go, you degenerate', color=0x87CEEB)
         _nhen.set_thumbnail(url=_img)
-        _nhen.add_field(name="Info", value=f"Parody\nArtist\nGroup\nLanguage\nCharacters\nCategory")
-        _nhen.add_field(name="** **", value=f": {_parody}\n: {_artist}\n: {_group}\n: {_language}\n: {_character}\n: {_category}", inline=True)
+        _nhen.add_field(name="Info", value=f"Parody : {_parody}\nArtist  : {_artist}\nGroup   : {_group}\nLanguage  : {_language}\nCharacters   : {_character}\nCategory    : {_category}")
+        # _nhen.add_field(name="** **", value=f": {_parody}\n: {_artist}\n: {_group}\n: {_language}\n: {_character}\n: {_category}", inline=True)
         _nhen.add_field(name=f"Sauce", value=f'**[{_random.id}]({_random.url})**', inline=False)
         _nhen.add_field(name="Tags", value=_tag, inline=False)
 
