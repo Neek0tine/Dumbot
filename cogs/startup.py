@@ -39,7 +39,7 @@ class StartupCog(commands.Cog):
     async def on_message(self, message):
         msg = message.content
         if not message.guild:
-            print(message.author.name, "#",  "Direct Message : ", msg)  # Log all chat to stdout
+            print(message.author.name, "#", "Direct Message : ", msg)  # Log all chat to stdout
         else:
             print(message.author.name, "#", message.channel.name, " : ", msg)  # Log all chat to stdout
 

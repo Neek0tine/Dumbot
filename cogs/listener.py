@@ -2,8 +2,7 @@ import math
 import random
 import asyncio
 import discord
-from responses import boo, shutdowns
-from responses import cumzone
+from responses import boo, shutdowns, cumzone
 from discord.ext import commands
 
 
@@ -113,8 +112,6 @@ class ListenerCog(commands.Cog):
                 else:
                     print('[+] Bogayon message detected!', msg)
                     print(f'[+] Bogayon trigger count: {bagogo_counter}')
-
-                chance = 50
 
                 try:
                     chance = min([random.randint(1, 50) for _ in range(bagogo_counter)])

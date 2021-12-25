@@ -4,6 +4,7 @@ from discord.ext import commands
 from enum import Enum, unique
 from discord import Embed
 from typing import List
+from responses import errors
 import requests
 import discord
 import asyncio
@@ -138,7 +139,6 @@ class NukegenCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
-
     async def nuke(self, ctx):
         await ctx.trigger_typing()
 
@@ -151,7 +151,7 @@ class NukegenCog(commands.Cog):
         except Exception as e:
             await ctx.channel.send(e)
             await asyncio.sleep(1)
-            await ctx.channel.send("Lmao forward this to that fucking nerd.")
+            await ctx.channel.send(f'{choice(errors)} <@256713166149386240> {e}')
             await asyncio.sleep(2)
             await ctx.channel.send("Meanwhile, enjoy this")
             await ctx.channel.send(f"https://nhentai.net/g/{random.randint(0, 4000)}")
@@ -212,7 +212,7 @@ class NukegenCog(commands.Cog):
             _category = 'Hentai'
 
         try:
-            _tag = [str(f'[{(tag).title()}](https://nhentai.net/tags/{str(tag).replace(" ", "-")})') for tag in info['tag']]
+            _tag = [str(f'[{tag.title()}](https://nhentai.net/tags/{str(tag).replace(" ", "-")})') for tag in info['tag']]
             _tag = ", ".join(_tag)
         except Exception:
             _tag = 'None'
