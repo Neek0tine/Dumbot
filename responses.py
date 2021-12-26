@@ -77,7 +77,7 @@ sauce_respo = ['lmao wtf is this',
                'damn bitch ok',
                'That shit nasty wtf',
                'Oo nice',
-               'What the fuck is wrong with you?'
+               'What the fuck is wrong with you?',
                'where the fuck did you get this',
                'Cocks and the nut',
                'bepis'
@@ -85,6 +85,7 @@ sauce_respo = ['lmao wtf is this',
                'nice',
                'the fuck',
                'it better be not yaoi bitch',
+               '  ',
                'i could nut to this']
 
 errors = ['fix this shit ',
