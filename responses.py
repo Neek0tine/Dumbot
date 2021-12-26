@@ -74,14 +74,22 @@ shutdowns = ['bacot',
 sauce_respo = ['lmao wtf is this',
                'ok thats actually interesting',
                'wtf',
-               'lol where the fuck did you get this',
+               'damn bitch ok',
+               'That shit nasty wtf',
+               'Oo nice',
+               'What the fuck is wrong with you?'
+               'where the fuck did you get this',
+               'Cocks and the nut',
+               'bepis'
+               'what the fuck',
                'nice',
-               'the fuck?',
-               'i hope its not yaoi',
-               'i can nut to this']
+               'the fuck',
+               'it better be not yaoi bitch',
+               'i could nut to this']
 
 errors = ['fix this shit ',
-          'wheres that nerd ',
+          'wheres the small fella',
+          'i beat a nerd to death',
           'weh bocak goblok, benerin ni ',
           'short fella cmere ',
           'damn, ',

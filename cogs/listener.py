@@ -15,6 +15,7 @@ class ListenerCog(commands.Cog):
         msg = message.content
         msg = msg.casefold()
         drop = random.randint(0, 100)
+        timer = random.randint(3, 12)
         if drop < 25:
 
             if 'epic' in msg and message.author.name != 'Dumbot':
