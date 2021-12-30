@@ -80,12 +80,15 @@ sauce_respo = ['lmao wtf is this',
                'What the fuck is wrong with you?',
                'where the fuck did you get this',
                'Cocks and the nut',
-               'bepis'
+               'bepis',
                'what the fuck',
                'nice',
                'the fuck',
                'it better be not yaoi bitch',
                '  ',
+               'epic',
+               'Jesus christ ...',
+               'Masyallah',
                'i could nut to this']
 
 errors = ['fix this shit ',

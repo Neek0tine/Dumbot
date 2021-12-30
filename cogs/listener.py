@@ -16,7 +16,7 @@ class ListenerCog(commands.Cog):
         msg = message.content
         msg = msg.casefold()
         drop = random.randint(0, 100)
-        timer = 1.3
+        timer = 1.3 + 4
 
         if 'cum' in msg:
             print(f'[+] Cum message detected! msg : <{msg}>, timer : <{timer}s>')
