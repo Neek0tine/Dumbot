@@ -26,9 +26,9 @@ def run():
 
 
 def keep_alive():
-    # server = Thread(target=run)
-    # server.start()
-    run()
+    server = Thread(target=run)
+    server.start()
+    # run()
 
 
 keep_alive()
