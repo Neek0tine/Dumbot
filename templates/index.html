@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dumbot Status</title>
+    <link rel="stylesheet" href={{'url_for("static", filename="assets/bootstrap/css/bootstrap.min.css")}}'>
+    <link rel="stylesheet" href={{'url_for("static", filename="assets/fonts/fontawesome-all.min.css")}}'>
+    <link rel="stylesheet" href={{'url_for("static", filename="assets/fonts/material-icons.min.css")}}'>
+    <link rel="stylesheet" href={{'url_for("static", filename="assets/css/Features-Boxed.css")}}'>
+    <link rel="stylesheet" href={{'url_for("static", filename="assets/css/styles.css")}}'>
+</head>
+
+<body style="background-color: rgb(28,25,25);">
+    <div class="features-boxed" style="background-color: rgb(37,40,41);">
+        <div class="container" style="color: rgb(23,26,26);">
+            <div class="intro">
+                <h2 class="text-center" style="color: rgb(255,255,255);font-size: 68px;">Dumbot</h2>
+                <p class="text-center" style="color: rgb(255,255,255);font-size: 25px;">Dumbot is a Discord Bot that were made as a utility bot, but ended up being hentai bot.</p>
+            </div>
+            <div class="row justify-content-center features">
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box" style="background-color: rgb(19,21,22);">
+                        <h3 class="name" style="font-size: 32px;color: rgb(255,255,255);">Status</h3>
+                        <div class="row">
+                            <div class="col-md-6"><i class="fas fa-network-wired icon" style="color: rgb(255,255,255);"></i></div>
+                            <div class="col-md-6">
+                                <h1 style="color: rgb(38,215,66);font-size: 32px;margin-top: 30px;">ONLINE</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box" style="background-color: rgb(19,21,22);">
+                        <h3 class="name" style="font-size: 32px;color: rgb(255,255,255);">RAM Usage</h3>
+                        <div class="row">
+                            <div class="col-md-6"><i class="material-icons icon" style="color: rgb(255,255,255);">memory</i></div>
+                            <div class="col-md-6">
+                                <h1 style="color: rgb(255,255,255);font-size: 32px;margin-top: 30px;">{{usage}} %</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box" style="background-color: rgb(19,21,22);">
+                        <h3 class="name" style="font-size: 32px;color: rgb(255,255,255);">RAM Available</h3>
+                        <div class="row">
+                            <div class="col-md-6"><i class="material-icons icon" style="color: rgb(255,255,255);">sd_storage</i></div>
+                            <div class="col-md-6">
+                                <h1 style="color: rgb(255,255,255);font-size: 32px;margin-top: 30px;">{{avail}} %</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 # Dumbot; Discord.py [rewrite] 1.7.3
 from discord.ext import commands
 from threading import Thread
-from flask import Flask
+from flask import Flask, render_template
 import psutil
 import os
 
@@ -16,18 +16,19 @@ app = Flask('')
 
 @app.route('/')
 def main():
-    stats = f"TSDBot; Discord.py [rewrite] 1.7.3 -- Status : Up -- Ram Usage: {psutil.virtual_memory().percent} % -- " \
-            f"Available Memory: {round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total)} %"
-    return stats
+    usage = psutil.virtual_memory().percent
+    avail = round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total)
+    return render_template('page.html', usage=usage, avail=avail)
 
 
 def run():
-    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 33507)))
+    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 33507)), debug=False)
 
 
 def keep_alive():
-    server = Thread(target=run)
-    server.start()
+    # server = Thread(target=run)
+    # server.start()
+    run()
 
 
 keep_alive()
