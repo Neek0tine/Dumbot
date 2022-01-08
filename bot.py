@@ -20,7 +20,7 @@ app = Flask('')
 def main():
     usage = psutil.virtual_memory().percent
     avail = round(psutil.virtual_memory().available * 100 / psutil.virtual_memory().total)
-    return render_template('page.html', usage=usage, avail=avail, uptime=uptime())
+    return render_template('page.html', usage=usage, avail=avail)
 
 
 def run():
