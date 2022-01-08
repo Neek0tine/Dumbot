@@ -19,7 +19,7 @@ class NukegenCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def nuke(self, ctx, arg=nhentai.get_random_id()):
+    async def nuke(self, ctx, arg=random.randint(0, 400000)):
         await ctx.trigger_typing()
 
         _random = ''
