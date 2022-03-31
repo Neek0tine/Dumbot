@@ -6,6 +6,7 @@ from enum import Enum, unique
 from discord import Embed
 from typing import List
 from responses import errors
+import sqlite3
 import nhentai
 import requests
 import discord
@@ -17,9 +18,11 @@ import time
 class NukegenCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        db = sqlite3.connect("dumbot.db")
 
     @commands.command()
     async def nuke(self, ctx, arg=random.randint(0, 400000)):
+        authorid = ctx.message.author.id
         await ctx.trigger_typing()
 
         async def _nuke(_arg):
@@ -109,20 +112,10 @@ class NukegenCog(commands.Cog):
                             value=f"Parody : {_parody}\nArtist  : {_artist}\nGroup   : {_group}\nLanguage  : "
                                   f"{_language}\nCharacters   : {_character}\nCategory    : {_category}")
 
-            # _nhen.add_field(name="** **", value=f": {_parody}\n: {_artist}\n: {_group}\n: {_language}\n: {
-            # _character}\n: {_category}", inline=True)
-
             _nhen.add_field(name=f"Sauce", value=f'**{_random.id}**', inline=False)
             _nhen.add_field(name="Tags", value=_tag, inline=False)
 
             return _nhen, _random.id
-
-        #
-        # _invoke_view = [[Button(label='Source', url=f'https://nhentai.net/g/{_random.id}', style=ButtonStyle.url),
-        #                 Button(label='Preview', custom_id='prev', style=ButtonStyle.green),
-        #                 Button(label='Randomize', custom_id='rand', style=ButtonStyle.blurple)]]
-
-        # _nukegen = await ctx.send(embed=_nhen, components=_invoke_view)
 
         _link = ''
         _em, _link = await _nuke(arg)
@@ -142,20 +135,23 @@ class NukegenCog(commands.Cog):
         _guide = await ctx.send("🔎 Read  |  🎲 Randomize  |  📌 Save")
 
         _valid_reactions = ['🔎', '🎲', '📌', '❌']
-        timeout = time.time() + 60 * 2  # 5 minutes from now
 
+        # TODO: 1. Owner only reacts
+        # TODO: 2. Remove reaction after timeout
+        # TODO: 3. Disable command if reaction still active
+
+        timeout = time.time() + 10  # 5 minutes from now
         while True:
-
             if time.time() > timeout:
-                await ctx.send('Ah i forgot the link, you took too long')
+                await _nukegen.delete()
+                await _guide.delete()
                 break
 
             def check_react(reaction, user):
-                return user == ctx.author and str(reaction.emoji) in _valid_reactions
+                return user == ctx.author and str(reaction.emoji) in _valid_reactions and user.id == authorid
 
             reaction, user = await self.bot.wait_for('reaction_add', check=check_react)
 
-            timeout = time.time() + 60 * 2  # 5 minutes from now
             if str(reaction.emoji) == _prev:
                 await _nukegen.remove_reaction(_prev, user)
                 await _nukegen.delete()
@@ -168,6 +164,7 @@ class NukegenCog(commands.Cog):
 
             elif str(reaction.emoji) == _rand:
                 await _nukegen.remove_reaction(_rand, user)
+                timeout = time.time() + 10
                 while True:
                     try:
                         _em, _link = await _nuke(random.randint(0, 400000))

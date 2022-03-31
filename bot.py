@@ -2,10 +2,12 @@
 from discord.ext import commands
 from threading import Thread
 from flask import Flask, render_template
+import os
 import datetime
 import time
 import psutil
 import os
+import sqlite3
 
 
 print("Getting token ...")
@@ -47,6 +49,37 @@ client = commands.Bot(command_prefix=get_prefix)
 client.remove_command('help')
 
 if __name__ == '__main__':
+
+    db = sqlite3.connect("dumbot.db")
+    print("SQLite database version:", sqlite3.version)
+
+    selector = db.cursor()
+    selector.execute("DROP TABLE IF EXISTS PREVIEWER")
+    selector.execute("DROP TABLE IF EXISTS RANDOMIZER")
+    previewer  = """ CREATE TABLE PREVIEWER (
+    ID INTEGER(6) PRIMARY KEY NOT NULL,
+    NID INTEGER(6),
+    URL VARCHAR(29),
+    PAGE INTEGER(4),
+    
+    CONSTRAINT fk_column
+    FOREIGN KEY (ID)
+    REFERENCES RANDOMIZER(ID)
+    )"""
+    selector.execute(previewer)
+
+    randomizer = """ CREATE TABLE RANDOMIZER(
+    ID INTEGER(6) PRIMARY KEY NOT NULL,
+    NID INTEGER(6)
+    )"""
+
+    if os.path.exists("cogs/weather forecast.csv"):
+        os.remove("cogs/weather forecast.csv")
+
+    else:
+        pass
+
+    selector.execute(randomizer)
     for file in os.listdir("cogs"):
         if file.endswith(".py"):
             client.load_extension(f'cogs.{file[:-3]}')

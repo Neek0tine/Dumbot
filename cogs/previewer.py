@@ -15,6 +15,7 @@ class PreviewerCog(commands.Cog):
 
     @commands.command()
     async def preview(self, ctx, arg='259049', req_page=1):
+        authorid = ctx.message.author.id
 
         _page = ''
         _dojin = ''
@@ -89,15 +90,19 @@ class PreviewerCog(commands.Cog):
         await _interactive_buttons.add_reaction('▶')
         await _interactive_buttons.add_reaction('📌')
         await _interactive_buttons.add_reaction('❌')
-        timeout = time.time() + 60 * 2  # 5 minutes from now
+        timeout = time.time() + 30  # 5 minutes from now
+
+        # TODO: 2. Remove reaction after timeout
+        # TODO: 3. Disable command if reaction still active
 
         while True:
 
             if time.time() > timeout:
+                await _interactive_buttons.clear_reaction()
                 break
 
             done_tasks = None
-            check_react = lambda reaction, user: user == ctx.author and str(reaction.emoji) in _valid_reactions
+            check_react = lambda reaction, user: user == ctx.author and str(reaction.emoji) in _valid_reactions and user.id == authorid
             check_button = lambda interaction, button: interaction.author == ctx.author and interaction.message == _interactive_buttons
 
             pending_tasks = [self.bot.wait_for('button_click', check=check_button),
@@ -147,8 +152,6 @@ class PreviewerCog(commands.Cog):
 
                         else:
                             await _interactive_buttons.remove_reaction('◀', user)
-
-
 
                     else:
                         if str(reaction.emoji) == _prev_re:
